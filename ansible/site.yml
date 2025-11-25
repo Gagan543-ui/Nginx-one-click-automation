@@ -1,4 +1,3 @@
-
 ---
 # ===========================
 # Install & Configure NGINX
@@ -22,12 +21,12 @@
         group: root
         mode: '0644'
 
-    - name: Remove default NGINX site (if required)
+    - name: Remove default NGINX site (if exists)
       file:
         path: /etc/nginx/sites-enabled/default
         state: absent
 
-    - name: Test NGINX configuration
+    - name: Test NGINX configuration syntax
       command: nginx -t
       register: nginx_test
 
@@ -35,7 +34,7 @@
       debug:
         var: nginx_test.stdout
 
-    - name: Restart and enable NGINX
+    - name: Restart and enable NGINX service
       service:
         name: nginx
         state: restarted
