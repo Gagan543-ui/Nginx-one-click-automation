@@ -1,1 +1,103 @@
 
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+    }
+
+    environment {
+        AWS_REGION = "eu-west-2"
+    }
+
+    stages {
+
+        stage('Checkout Repo') {
+            steps {
+                echo "📥 Checking out redis-final-oneclick repo"
+                deleteDir()
+                git branch: 'main',
+                    url: 'https://github.com/Abhinavt28/redis-final-oneclick.git'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                dir('terraform') {
+                    sh '''
+                        terraform init -input=false
+                    '''
+                }
+            }
+        }
+
+        stage('Terraform Destroy') {
+            steps {
+                dir('terraform') {
+                    shpipeline {
+    agent any
+
+    options {
+        timestamps()
+    }
+
+    environment {
+        AWS_REGION = "eu-west-2"
+    }
+
+    stages {
+
+        stage('Checkout Repo') {
+            steps {
+                echo "📥 Checking out nginx-oneclick repo"
+                deleteDir()
+                git branch: 'main',
+                    url: 'https://github.com/Abhinavt28/redis-final-oneclick.git'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                dir('terraform') {
+                    sh '''
+                        echo "🚧 Initializing Terraform for NGINX deployment"
+                        terraform init -input=false
+                    '''
+                }
+            }
+        }
+
+        stage('Terraform Destroy') {
+            steps {
+                dir('terraform') {
+                    sh '''
+                        echo "🔥 Destroying NGINX Infrastructure"
+                        terraform destroy -auto-approve -input=false
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "🧹 Cleaning workspace"
+            cleanWs()
+        }
+    }
+}
+ '''
+                        terraform destroy -auto-approve -input=false
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "🧹 Cleaning workspace"
+            cleanWs()
+        }
+    }
+}
