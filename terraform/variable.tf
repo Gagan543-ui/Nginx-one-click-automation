@@ -44,7 +44,7 @@ variable "instance_type_nginx" {
 variable "s3_bucket_name" {
   description = "Name of S3 bucket (must be globally unique)"
   type        = string
-  default     = "abhinav-nginx-demo-bucket-18"
+  default     = "shreyas-nginx-demo-bucket-18"
 }
 
 variable "key_name" {
