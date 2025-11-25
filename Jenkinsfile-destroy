@@ -17,7 +17,7 @@ pipeline {
                 echo "📥 Checking out redis-final-oneclick repo"
                 deleteDir()
                 git branch: 'main',
-                    url: 'https://github.com/Abhinavt28/redis-final-oneclick.git'
+                    url: 'https://github.com/Gagan543-ui/Nginx-one-click-automation'
             }
         }
 
@@ -52,7 +52,7 @@ pipeline {
                 echo "📥 Checking out nginx-oneclick repo"
                 deleteDir()
                 git branch: 'main',
-                    url: 'https://github.com/Abhinavt28/redis-final-oneclick.git'
+                    url: 'https://github.com/Nginx-one-click-automation/Nginx-one-click-automation'
             }
         }
 
