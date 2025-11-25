@@ -1,1 +1,25 @@
 
+---
+plugin: amazon.aws.aws_ec2
+
+regions:
+  - eu-west-2
+
+filters:
+  tag:Project:
+    - nginx-demo        # Updated for NGINX project
+  instance-state-name:
+    - running           # Ensures only healthy EC2s are fetched
+
+keyed_groups:
+  # Group EC2 instances based on Role tag:
+  # e.g., nginx, bastion, worker-nodes, etc.
+  - key: tags['Role']
+    prefix: ""
+
+hostnames:
+  - private-ip-address
+  - ip-address
+
+compose:
+  ansible_host: public_ip_address | default(private_ip_address)
