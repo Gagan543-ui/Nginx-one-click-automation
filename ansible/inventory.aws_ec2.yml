@@ -1,4 +1,3 @@
-
 ---
 plugin: amazon.aws.aws_ec2
 
@@ -7,13 +6,11 @@ regions:
 
 filters:
   tag:Project:
-    - nginx-demo        # Updated for NGINX project
+    - nginx-demo
   instance-state-name:
-    - running           # Ensures only healthy EC2s are fetched
+    - running
 
 keyed_groups:
-  # Group EC2 instances based on Role tag:
-  # e.g., nginx, bastion, worker-nodes, etc.
   - key: tags['Role']
     prefix: ""
 
