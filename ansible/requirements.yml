@@ -1,1 +1,8 @@
+---
+roles:
+  - src: geerlingguy.nginx   # NGINX installation role from Galaxy
+
+collections:
+  - name: amazon.aws
+  - name: community.general
 
